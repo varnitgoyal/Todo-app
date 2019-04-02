@@ -16,14 +16,12 @@ class TodoItem extends Component {
     
     this.state = {
       isCompleted: false,
-      isEditable:false
+      isEditable:false,
+      changed_text: props.data.desc  
       
     };
   } 
-  componentDidMount () {
-    
-    this.setState({ changed_text: this.props.data.desc });
-  }
+
 
   handleCheckbox = event => {
     if (event.target.checked) {
@@ -39,25 +37,46 @@ class TodoItem extends Component {
     }
   };
 
-  handleEdit = event => {
-      let _changed_text=event.target.value;
+  handleEdit = () => {
     this.setState({
       isEditable: true,
-      changed_text:_changed_text
+     
     });
   };
+
+  handleEditChange=event =>{
+    let _changed_text=event.target.value;
+    this.setState({
+      
+      changed_text:_changed_text
+    });
+  }
+  handleEditSubmit=event=>{
+    event.preventDefault();
+    this.setState({
+      isEditable:false
+    })
+    this.props.handleEditDone(this.state.changed_text,this.props.data.id)
+  }
+
+
 
   render() {
     return (
       <div className={this.props.className}>
-      
+     
+
         <input onChange={this.handleCheckbox}  type="checkbox" />
         {this.state.isEditable ? (
+          <form onSubmit={(event)=>this.handleEditSubmit(event,this.state.changed_text,this.props.data.id)}>
           <input
             type="text"
-            onChange={this.handleEdit}
+            onChange={this.handleEditChange}
             value={this.state.changed_text}
+        
+            
           />
+              </form>
         ) : (
           <h3 style={this.state.isCompleted ? style_checked : style_unchecked}>
             {this.props.data.desc}

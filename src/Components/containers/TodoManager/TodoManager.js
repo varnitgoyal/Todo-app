@@ -8,6 +8,7 @@ class TodoManager extends Component {
     super(props);
     this.state = {
       items: [{ id: 0, desc: "task to complete", isCompleted: false }]
+      
     };
   }
 
@@ -43,10 +44,40 @@ class TodoManager extends Component {
       })
 
   }
-  handleCompleted=(index,status)=>{
-      console.log(index)
+
+  handleEditDone=(desc,id)=>{
+    
+    console.log("handle edit called")
     let newItems=[...this.state.items];
-    newItems[index].isCompleted=status;
+    newItems.every((element,index)=>{
+      if(element.id===id){
+        element.desc=desc;
+        return false
+      }
+      else{
+        return true;
+      }
+    })
+  
+    
+    this.setState({
+      items:newItems
+    })
+  
+  }
+  handleCompleted=(index,status)=>{
+      
+    let newItems=[...this.state.items];
+    newItems.every((element)=>{
+      if(element.id===index){
+        element.isCompleted=status;
+        return false
+      }
+      else{
+        return true;
+      }
+    })
+    
     this.setState({
         items:newItems
     })
@@ -58,7 +89,7 @@ class TodoManager extends Component {
       <div className={this.props.className}>
       <AddTodoItem  handleSubmit={this.handleSubmit}/>
         {this.state.items.map((item) => {
-          return <TodoItemStyled data={item} handleDelete={this.handleDelete} handleCompleted={this.handleCompleted}  key={item.id}/>;
+          return <TodoItemStyled data={item} handleEditDone={this.handleEditDone} handleDelete={this.handleDelete} handleCompleted={this.handleCompleted}  key={item.id}/>;
         })}
 
         
