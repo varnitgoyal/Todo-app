@@ -24,8 +24,8 @@ class App extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
-      username: "",
-      password: ""
+      username: "admin",
+      password: "admin"
     };
   }
 
