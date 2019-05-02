@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing login component Is snapshot Same 1`] = `
+<div
+  className="login_form"
+>
+  <form
+    className="login"
+    onSubmit={[Function]}
+  >
+    <h2>
+      Login
+    </h2>
+    <input
+      id="username"
+      name="username"
+      onChange={[Function]}
+      placeholder="username"
+      type="text"
+      value=""
+    />
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="password"
+      type="password"
+      value=""
+    />
+    <input
+      type="submit"
+    />
+  </form>
+  <p>
+    username is admin
+  </p>
+  <p>
+    password is admin
+  </p>
+</div>
+`;

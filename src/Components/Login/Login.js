@@ -24,13 +24,14 @@ export class Login extends Component {
     }
 
     return (
-      <div>
+      <div className="login_form">
         <form
           className="login"
           onSubmit={event => handleSubmit(event, this.state)}
         >
           <h2>Login</h2>
           <input
+            id="username"
             type="text"
             onChange={this.handleChange}
             name="username"
